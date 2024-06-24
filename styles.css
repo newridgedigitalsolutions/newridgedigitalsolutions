@@ -36,7 +36,9 @@ body {
 
 /* Header */
 header {
-    background: #1B1B1B;
+    /* background: #1B1B1B; */
+    background: rgb(28, 55, 54);
+    background: radial-gradient(circle, rgba(28, 55, 54, 1) 0%, rgba(27, 27, 27, 1) 35%);
     /* color: #fff; */
     padding: 1.5rem 0;
     text-align: center;
@@ -53,12 +55,13 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    padding-bottom: 1rem;
 }
 
 #brand-container img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    border-radius: 20%;
     margin-right: 1rem;
     border: solid 2px #61C0BE;
 }
@@ -74,7 +77,7 @@ main {
 .brand-name {
     font-family: 'Gaoel';
     color: #FFFFFF;
-    /* font-size: 2rem; */
+    font-size: 2rem;
 }
 
 .brand-slogan {
@@ -90,7 +93,7 @@ header h1 {
 
 nav {
     position: relative;
-    background-color: #1B1B1B;
+    /* background-color: #1B1B1B; */
 }
 
 .menu-toggle {
@@ -116,7 +119,7 @@ nav ul li {
     display: inline;
     padding: 0.5rem;
     margin: 0;
-    background-color: #1B1B1B;
+    /* background-color: #1B1B1B; */
 }
 
 nav ul li a {
@@ -142,8 +145,81 @@ nav ul li a {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    transform: skew(-5deg);
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    /* transform: skew(-5deg); */
+    margin: 10px 0;
+    width: calc(33.333% - 20px);
+    transition: transform 0.5s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    transform: skew(5deg) scale(1.1);
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.15) skew(5deg);
+}
+
+.gallery-item:hover .overlay-title {
+    transform: translate(-50%, -200%) scale(1.5);
+    transition: transform 0.5s ease;
+}
+
+.overlay-title {
+    z-index: 25;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
 /* Mobile Navigation */
 @media (max-width: 768px) {
+    .brand-name {
+        text-align: left;
+    }
+    .brand-slogan {
+        font-size: .75rem;
+    }
     #brand-container img {
         width: 50px;
         height: 50px;
@@ -183,6 +259,21 @@ nav ul li a {
         margin: 0;
         width: 100%;
     }
+
+    .gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery-item {
+        width: 80%;
+        margin-bottom: 20px;
+        transform: none;
+    }
+
+    .gallery-item img {
+        transform: none;
+    }   
 }
 
 /* Hero Section */
@@ -192,6 +283,11 @@ nav ul li a {
     color: #fff;
     text-align: center;
     padding: 4rem 1rem;
+    border-radius: 0 0 50px 50px;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero::before {
@@ -204,6 +300,7 @@ nav ul li a {
     background: rgba(0, 0, 0, 0.5);
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
     z-index: 1;
+    border-radius: 0 0 50px 50px;
 }
 
 .hero h2 {
@@ -227,7 +324,7 @@ nav ul li a {
 
 /* Services Section */
 .services {
-    padding: 2rem 1rem;
+    padding: 2rem 0rem;
     text-align: center;
 }
 
@@ -280,10 +377,14 @@ footer {
 }
 
 /* Media Queries */
-@media (min-width: 600px) {
+@media (min-width: 768px) and (max-width: 900px) {
     .brand-slogan {
-        font-size: 0.67rem;
+        font-size: 1rem;
         display: inline-block;
+    }
+    #brand-container img {
+        width: 70px;
+        height: 70px;
     }
     nav ul li {
         margin: 0 1rem;
@@ -308,6 +409,15 @@ footer {
     .project {
         width: 45%;
     }
+
+    .gallery {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .gallery-item {
+        width: calc(50% - 20px);
+    }
 }
 
 @media (min-width: 900px) {
@@ -320,5 +430,13 @@ footer {
     .service,
     .project {
         width: 30%;
+    }
+
+    .gallery {
+        flex-direction: row;
+    }
+
+    .gallery-item {
+        width: calc(33.333% - 40px);
     }
 }
